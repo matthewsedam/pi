@@ -1,0 +1,11 @@
+*.o
+*.a
+*.DS_Store
+*~
+prime.xcodeproj/
+bin/prime.dSYM/
+.project
+.cproject
+bin/
+Debug/
+._*
