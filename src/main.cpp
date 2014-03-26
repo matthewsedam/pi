@@ -18,6 +18,8 @@
  along with Pi.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <iostream>
+#include <gmp.h>
+#include <gmpxx.h>
 
 int main(int argc, const char *argv[]) {
     return 0;
