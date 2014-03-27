@@ -1,4 +1,4 @@
-/* main.c
+/* pi.h
  
  Copyright 2014 Matthew Sedam
  
@@ -17,34 +17,17 @@
  You should have received a copy of the GNU General Public License
  along with Pi.  If not, see <http://www.gnu.org/licenses/>. */
 
+#ifndef PI_H_
+#define PI_H_
+
 #include <stdio.h>
 #include <stdlib.h>
 
 #include <gmp.h>
 
-#include "pi.h"
+#define BITS_PER_DIGIT 3.3219280948873623478703194294893901758648313930245806
+#define DIGITS_PER_ITERATION 14.1816474627254776555
 
-void inputError(void) {
-    fprintf(stderr, "Usage: pi [number of digits]\n");
-    exit(1);
-}
+char * piChudnovsky(unsigned long numberOfDigits);
 
-int main(int argc, const char *argv[]) {
-    unsigned long numberOfDigits = 100;
-    if (argc == 2) {
-        char * endptr;
-        numberOfDigits = strtol(argv[1], &endptr, 10);
-        if (*endptr != '\0')
-            inputError();
-    }
-    if (numberOfDigits < 1)
-        inputError();
-    else if (numberOfDigits == 1) {
-        printf("3\n");
-        return 0;
-    }
-    char * piString = piChudnovsky(numberOfDigits);
-    printf("%.1s.%s\n", piString, piString + 1);
-    free(piString);
-    return 0;
-}
+#endif
