@@ -33,13 +33,13 @@ char * piChudnovsky(unsigned long numberOfDigits);
 
 char * piChudnovskyMultiCore(unsigned long numberOfDigits);
 
-typedef struct calculateConstantNumeratorInput {
+typedef struct {
     mpf_t numerator;
 } calculateConstantNumeratorInput;
 
 void * calculateConstantNumerator(void * input);
 
-typedef struct calculateSeriesDenominatorInput {
+typedef struct {
     mpz_t seriesDenominator;
     unsigned long k;
 } calculateSeriesDenominatorInput;
