@@ -17,8 +17,10 @@
  You should have received a copy of the GNU General Public License
  along with Pi.  If not, see <http://www.gnu.org/licenses/>. */
 
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include <gmp.h>
 
@@ -26,7 +28,7 @@
 
 void inputError(void) {
     fprintf(stderr, "Usage: pi [number of digits]\n");
-    exit(1);
+    exit(-1);
 }
 
 int main(int argc, const char *argv[]) {
@@ -43,7 +45,12 @@ int main(int argc, const char *argv[]) {
         printf("3\n");
         return 0;
     }
-    char * piString = piChudnovsky(numberOfDigits);
+    long numberOfCPUs = sysconf(_SC_NPROCESSORS_ONLN);
+    char * piString;
+    if (numberOfCPUs > 1)
+        piString = piChudnovskyMultiCore(numberOfDigits);
+    else
+        piString = piChudnovsky(numberOfDigits);
     printf("%.1s.%s\n", piString, piString + 1);
     free(piString);
     return 0;

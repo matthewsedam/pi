@@ -20,6 +20,7 @@
 #ifndef PI_H_
 #define PI_H_
 
+#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -29,5 +30,20 @@
 #define DIGITS_PER_ITERATION 14.1816474627254776555
 
 char * piChudnovsky(unsigned long numberOfDigits);
+
+char * piChudnovskyMultiCore(unsigned long numberOfDigits);
+
+typedef struct calculateConstantNumeratorInput {
+    mpf_t numerator;
+} calculateConstantNumeratorInput;
+
+void * calculateConstantNumerator(void * input);
+
+typedef struct calculateSeriesDenominatorInput {
+    mpz_t seriesDenominator;
+    unsigned long k;
+} calculateSeriesDenominatorInput;
+
+void * calculateSeriesDenominator(void * input);
 
 #endif
