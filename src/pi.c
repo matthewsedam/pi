@@ -80,9 +80,9 @@ char * piChudnovskyMultiCore(unsigned long numberOfDigits) {
     mpf_inits(inputToCalculateConstantNumeratorThread.numerator, denominator, seriesFloatNumerator, seriesFloatDenominator, newDenominator, NULL);
     
     pthread_t numeratorThread;
-    int possibleError = pthread_create(&numeratorThread, NULL, calculateConstantNumerator, (void *) &inputToCalculateConstantNumeratorThread);
-    if (possibleError) {
-        fprintf(stderr, "Error: pthread_create() returned %d\n", possibleError);
+    int rc = pthread_create(&numeratorThread, NULL, calculateConstantNumerator, (void *) &inputToCalculateConstantNumeratorThread);
+    if (rc) {
+        fprintf(stderr, "Error: pthread_create() returned %d\n", rc);
         exit(-1);
     }
     
@@ -90,9 +90,9 @@ char * piChudnovskyMultiCore(unsigned long numberOfDigits) {
     
     for (unsigned long k = 0; k < numberOfIterations; k++) {
         inputToCalculateSeriesDenominatorThread.k = k;
-        possibleError = pthread_create(&seriesDenominatorThread, NULL, calculateSeriesDenominator, (void *) &inputToCalculateSeriesDenominatorThread);
-        if (possibleError) {
-            fprintf(stderr, "Error: pthread_create() returned %d\n", possibleError);
+        rc = pthread_create(&seriesDenominatorThread, NULL, calculateSeriesDenominator, (void *) &inputToCalculateSeriesDenominatorThread);
+        if (rc) {
+            fprintf(stderr, "Error: pthread_create() returned %d\n", rc);
             exit(-1);
         }
         
