@@ -33,6 +33,8 @@ void inputError(void) {
 
 int main(int argc, const char *argv[]) {
     unsigned long numberOfDigits = 100;
+    if (argv[1][0] == '-')
+        inputError();
     if (argc == 2) {
         char * endptr;
         numberOfDigits = strtol(argv[1], &endptr, 10);
