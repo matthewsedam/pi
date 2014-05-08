@@ -1,5 +1,5 @@
 all:
-	g++ --std=c++11 -Os src/*.cpp -o bin/pi -lgmp -lgmpxx
+	gcc -std=c99 -Os src/*.c -o bin/pi -lgmp -lgmpxx -lpthread
 
 install:
 	install bin/pi /usr/bin/pi
