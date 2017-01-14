@@ -5,4 +5,4 @@ Pi is a command line utility that computes pi.
 Pi requires the GNU Multiple Precision Arithmetic Library which can be found at http://gmplib.org/.
 
 ##License
-Pi is Copyright 2014 Matthew Sedam and released under the GNU GPLv3.
+Pi is Copyright 2017 Matthew Sedam and released under the GNU GPLv3.

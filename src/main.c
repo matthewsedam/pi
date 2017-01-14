@@ -17,12 +17,8 @@
  You should have received a copy of the GNU General Public License
  along with Pi.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-
-#include <gmp.h>
 
 #include "pi.h"
 
@@ -33,6 +29,7 @@ void inputError(void) {
 
 int main(int argc, const char *argv[]) {
     unsigned long numberOfDigits = 100;
+
     if (argc == 2) {
         if (argv[1][0] == '-')
             inputError();
@@ -42,18 +39,15 @@ int main(int argc, const char *argv[]) {
             inputError();
     } else
         inputError();
+
     if (numberOfDigits < 1)
         inputError();
     else if (numberOfDigits == 1) {
         printf("3\n");
         return 0;
     }
-    long numberOfCPUs = sysconf(_SC_NPROCESSORS_ONLN);
-    char * piString;
-    if (numberOfCPUs > 1)
-        piString = piChudnovskyMultiCore(numberOfDigits);
-    else
-        piString = piChudnovsky(numberOfDigits);
+
+    char * piString = piChudnovsky(numberOfDigits);
     printf("%.1s.%s\n", piString, piString + 1);
     free(piString);
     return 0;
